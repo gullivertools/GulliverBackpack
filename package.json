@@ -5,7 +5,10 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@3846masa/axios-cookiejar-support": "^0.4.2",
+    "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
     "gatsby": "^2.2.1",
     "gatsby-image": "^2.0.34",
     "gatsby-plugin-manifest": "^2.0.24",
@@ -18,7 +21,8 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
-    "requests": "^0.2.2"
+    "requests": "^0.2.2",
+    "tough-cookie": "^3.0.1"
   },
   "devDependencies": {
     "prettier": "^1.16.4"
