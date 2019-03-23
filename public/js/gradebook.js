@@ -44,11 +44,12 @@ function checkLogin() {
 
 function loadGrades() {
     // get grades json object from server through POST
-    // here's a dummy array
     var xhttp = new XMLHttpRequest();
+    var gradesColumn = document.getElementsByClassName('block column main')[0];
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const classes = JSON.parse(this.responseText);
+            gradesColumn.className = "block column main";
             classes.forEach(currentClass => {
                 $('.main')
                     .append(`<div class="class row">
@@ -65,33 +66,6 @@ function loadGrades() {
         "username": "kraj011",
         "password": "Davidk123456"
     }));
-
-
-    // const classes = [{
-    //         "name": "Aerospace Sci and Engin H II (S2)",
-    //         "grade": "A 96.67",
-    //         "teacher": "Roberto Carballo"
-    //     },
-    //     {
-    //         "name": "Computer Science A AP (S1,S2)",
-    //         "grade": "A 96.43",
-    //         "teacher": "Mr. Jesse de Vera"
-    //     },
-    //     {
-    //         "name": "Digital Electronics H (S1)",
-    //         "grade": "",
-    //         "teacher": "Roberto Carballo"
-    //     }
-    // ];
-
-    // classes.forEach(currentClass => {
-    //     $('.main')
-    //         .append(`<div class="class row">
-    //                     <h4><b>Class</b> ${currentClass.name || 'N/A'}</h4>
-    //                     <h4><b>Grade</b> ${currentClass.grade || 'N/A'}</h4>
-    //                     <h4><b>Teacher</b> ${currentClass.teacher || 'N/A'}</h4>
-    //                 </div>`);
-    // });
 }
 
 function getCookie(name) {

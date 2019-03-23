@@ -40,7 +40,11 @@ body {
     background: var(--highlight-color);
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 10px 0px;
     font-family: 'product_sansregular';
     color: var(--title);
