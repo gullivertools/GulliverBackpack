@@ -93,25 +93,23 @@ function parseGrades(gradeString, res, request) {
 }
 
 
-const express = require('express')
-const app = express()
-app.use(express.json())
-const port = 3000
+// const express = require('express')
+// const app = express()
+// app.use(express.json())
+// const port = process.env.PORT || 3000; // this is just for heroku support
 
 
-app.post('/getGrades', function (req, res) {
-    let json = req.body;
-    if (!json.username || !json.password) {
-        res.statusCode = 400
-        res.send("wrong format!")
+// app.post('/getGrades', function (req, res) {
+//     let json = req.body;
+//     if (!json.username || !json.password) {
+//         res.statusCode = 400
+//         res.send("wrong format!")
 
-        return
-    } else {
-        console.log("right!")
-        getLogin(json.username, json.password, res);
+//         return
+//     } else {
+//         console.log("right!")
+//         getLogin(json.username, json.password, res);
+//     }
+// })
 
-
-    }
-})
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
