@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'product_sansregular';
+    src: url('./fonts/product_sans_regular-webfont.woff2') format('woff2'),
+        url('./fonts/product_sans_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --bg-tint: #f2f5f8;
+    --main-color: #fff;
+    --inner-block: #eee;
+    --shadow: 0 0 20px 3px rgba(0, 0, 0, 0.02);
+    --shadow-selected: 0 0 20px 3px rgba(0, 0, 0, 0.08);
+    --title: #000;
+    --para: #666;
+    --selected-text: cornflowerblue;
+    --selected-text-hover: #6495edcc;
+    --selected-element: #dadfe8;
+    --highlight-color: #93b4f094;
+
+    --green-alert: #b7ebc4;
+    --green-alert-outline: #40a450;
+
+    --red-alert: #ebb7b7;
+    --red-alert-outline: #a44040;
+}
+
+body {
+    margin: 0px;
+    background-color: var(--bg-tint);
+}
+
+::selection {
+    background: var(--highlight-color);
+}
+
+/* for firefox */
+::-moz-selection {
+    background: var(--highlight-color);
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 10px 0px;
+    font-family: 'product_sansregular';
+    color: var(--title);
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 24px;
+    color: var(--para);
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: var(--para);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.block {
+    display: flex;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    box-shadow: var(--shadow);
+}
+
+.top-bar {
+    width: -webkit-fill-available;
+    /* height: 40px; */
+    padding: 0px 20px;
+    background-color: var(--main-color);
+    border-bottom: 1px solid var(--inner-block);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0px;
+    justify-content: center;
+}
+
+.main {
+    width: 900px;
+    margin: 0 auto;
+    position: relative;
+    top: 80px;
+}

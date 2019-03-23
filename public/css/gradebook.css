@@ -1,0 +1,23 @@
+.main {
+    margin: -5px auto;
+    padding: 10px 15px;
+}
+
+.class:not(:last-child) {
+    border-bottom: 1px solid var(--inner-block);
+}
+
+.class {
+    justify-content: space-between;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.class:hover {
+    background-color: var(--inner-block);
+}
+
+h4 {
+    flex: 1;
+    margin-left: 10px;
+}
