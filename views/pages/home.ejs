@@ -1,4 +1,4 @@
-<%- include('../partials/header') %>
+<%- include('../partials/header', {imports: data.imports}) %>
 
 <div class="column main">
     <div class="row" id="user-overview">
@@ -72,18 +72,29 @@
                 </p>
             </div>
         </div>
-        <div class="column block" id="grades">
-            <% if(!data.grades) { %>
-                <p>No grades available.</p>
-            <% } else { %>
-                <% for(g in data.grades) { %>
-                    <div class="class row">
-                        <h4><b>Class</b><%= data.grades[g].name %></h4>
-                        <h4><b>Grade</b><%= data.grades[g].grade %></h4>
-                        <h4><b>Teacher</b><%= data.grades[g].teacher %></h4>
-                    </div>
+        <div class="column" id="grades">
+            <div class="block row">
+                <button class="transparent" onClick="openClasses()">Open All</button>
+                <button class="transparent" onClick="closeClasses()">Close All</button>
+            </div>
+            <div class="column block">
+                <% if(!data.grades) { %>
+                    <p>No grades available.</p>
+                <% } else { %>
+                    <% for(g in data.grades) { %>
+                        <div class="class column">
+                            <div class="class-info row">
+                                <h4><%= data.grades[g].name %></h4>
+                                <div style="flex: 1"></div>
+                                <h4 class="class-grade"><%= data.grades[g].gradeNumber %> <span><%= data.grades[g].gradeLetter %></span></h4>        
+                            </div>
+                            <div class="class-details column">
+
+                            </div> 
+                        </div>
+                    <% } %>
                 <% } %>
-            <% } %>
+            </div>
         </div>
     </div>
 </div>

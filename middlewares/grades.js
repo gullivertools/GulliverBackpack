@@ -30,8 +30,6 @@ function loginToMBP(username, password) {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
             }
         }, function (err, response, body) {
-    
-            console.log('username and password going through: ', username, password);
             // actually login
             request.post("https://mybackpack.gulliverschools.org/SeniorApps/facelets/registration/loginCenter.xhtml", {
                 headers: {
@@ -94,15 +92,22 @@ async function getGrades(userCookie) {
     richPanel.forEach(element => {
         let classInfo = $(element).find('table > tbody > tr > td > table > tbody > tr');
 
-        let className = $(classInfo).find('.dailyGradeCourseNameColumn').text();
-        let classGrade = $(classInfo).find('.dailyGradeGroupColumn').text();
+        let className = $(classInfo).find('.dailyGradeCourseNameColumn').text().replace(/\(([^\)]+)\)/, ""); // gets rid of the (S1, S2) bs
+        let classGrade = $(classInfo).find('.dailyGradeGroupColumn').text().replace("Grade to Date: ", "");
         let classTeacher = $(classInfo).find('.cellVAlignTop')[2]; // there's many divs called "cellVAlignTop" but teacher is always the third
 
-        classTeacher = $(classTeacher).text();
+        classTeacher = $(classTeacher).text().replace("Teacher: ", "");
 
+        let letter = "N/A";
+        let number = "";
+        if(classGrade != " ") {
+            letter = (classGrade.match(/[\w]|[\w\+]|[\w-]/) || ["N/A"])[0];
+            number = classGrade.replace(/[A-z]|\+|-| /, "");
+        }
         classes.push({
             "name": className,
-            "grade": classGrade,
+            "gradeLetter": letter,
+            "gradeNumber": number.replace(/\s/, ""),
             "teacher": classTeacher
         });
     });

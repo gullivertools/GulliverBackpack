@@ -34,7 +34,9 @@ app.get('/home', async function(req, res) {
     let grades = await getGrades(req.cookies['user-info']);
 
     res.status(200).render('pages/home', {data: {
-        grades: grades
+        grades: grades,
+        imports:
+        `<script src="/js/gradebook.js"></script>`
     }});
     
 });

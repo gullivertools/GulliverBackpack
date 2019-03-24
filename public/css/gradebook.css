@@ -9,12 +9,34 @@
 
 .class {
     justify-content: space-between;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.6, 0.05, 0.38, 0.98);
+}
+
+.class-info:hover {
     border-radius: 5px;
+    background-color: var(--inner-block);
     cursor: pointer;
 }
 
-.class:hover {
-    background-color: var(--inner-block);
+.class.opened:hover {
+    background-color: transparent;
+}
+
+.class.opened .class-grade {
+    opacity: 0;
+}
+
+.class-grade {
+    opacity: 1;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    transition-duration: 0.2s;
+}
+
+.class-grade > span {
+    font-weight: 500;
 }
 
 .image {
@@ -67,8 +89,7 @@ h3#GPA {
 }
 
 h4 {
-    flex: 1;
-    margin-left: 10px;
+    margin: 10px;
 }
 
 #statistics-chart {
@@ -90,15 +111,23 @@ h4 {
 }
 
 .desc {
-    margin: 10px;
+    margin: 0px;
+}
+
+.assignment-name {
+    margin: 0px;
 }
 
 .assignment-class {
-    margin: 0px 10px;
+    margin: 0px;
     font-family: 'Roboto',sans-serif;
     font-weight: 300;
     font-size: 0.7em;
     margin-bottom: 10px;
+}
+
+.assignment-date {
+    margin-left: 0px;
 }
 
 /* that the username */
