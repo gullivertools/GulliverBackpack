@@ -2,7 +2,7 @@ $(document).ready(function () {
     if ((getCookie("username") == "" || getCookie("username") == null) || (getCookie("password") == "" || getCookie("password") == null)) {
         displayError();
     } else {
-        loadGrades();
+        loadGrades({"username": getCookie("username"), "password": getCookie("password")});
     }
 });
 
@@ -42,7 +42,7 @@ function checkLogin() {
     }));
 }
 
-function loadGrades() {
+function loadGrades(user) {
     // get grades json object from server through POST
     var xhttp = new XMLHttpRequest();
     var gradesColumn = document.getElementsByClassName('block column main')[0];
@@ -63,8 +63,8 @@ function loadGrades() {
     xhttp.open("POST", "getGrades", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify({
-        "username": "kraj011",
-        "password": "Davidk123456"
+        "username": user.username,
+        "password": user.password
     }));
 }
 
