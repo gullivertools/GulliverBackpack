@@ -89,7 +89,15 @@
                                 <h4 class="class-grade"><%= data.grades[g].gradeNumber %> <span><%= data.grades[g].gradeLetter %></span></h4>        
                             </div>
                             <div class="class-details column">
-
+                                <div class="row">
+                                    <div class="column class-grade-overview">
+                                        <h4><%= data.grades[g].gradeLetter %></h4>
+                                        <h3><%= data.grades[g].gradeNumber %></h3>
+                                    </div>
+                                    <div class="column grade-table">
+                                        <p>this is where the table would go.</p>
+                                    </div>
+                                </div>
                             </div> 
                         </div>
                     <% } %>

@@ -107,7 +107,7 @@ async function getGrades(userCookie) {
         classes.push({
             "name": className,
             "gradeLetter": letter,
-            "gradeNumber": number.replace(/\s/, ""),
+            "gradeNumber": number,
             "teacher": classTeacher
         });
     });
