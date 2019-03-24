@@ -1,0 +1,20 @@
+<%- include('../partials/header', {imports: data.imports}) %>
+
+<div class="main">
+    <form action="/login" method="post" class="block column login">
+        <h2>LOG IN</h2>
+        <div class="column" style="margin-bottom: 10px">
+            <label>Username</label>
+            <input type="text" name="username" />
+        </div>
+        <div class="column" style="margin-bottom: 10px">
+            <label>Password</label>
+            <input type="password" name="password" />
+        </div>
+        <div class="column">
+            <input type="submit" value="Log In" />
+        </div>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

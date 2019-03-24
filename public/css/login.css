@@ -1,0 +1,19 @@
+.main {
+    margin: 70 auto 0 auto;
+    width: 300px;
+}
+
+h2, label, input {
+    font-family: 'Roboto', sans-serif;
+}
+
+input {
+all: unset;
+  background-color: #f9f9f9;
+  color: #222;
+  caret-color: #222;
+  padding: 5px;
+  border-radius: 3px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}

@@ -1,9 +1,91 @@
 <%- include('../partials/header') %>
 
-<script src="/js/gradebook.js"></script>
-
-<div class="block column main">
-
+<div class="column main">
+    <div class="row" id="user-overview">
+        <div class="block row image" id="account">
+            <img src="https://via.placeholder.com/200" alt="Account Name">
+            <div class="block column">
+                <h3>David Krajewski</h3>
+                <h5>Class of <b>2021</b></h5>
+            </div>
+        </div>
+        <div class="block row" id="statistics">
+            <div class="column" id="statistics-GPA">
+                <p>Weighted GPA</p>
+                <h2 id="GPA">5.1</h2>
+                <p>Unweighted GPA</p>
+                <h3 id="GPA">4.8</h3>
+            </div>
+            <div class="column" id="statistics-chart">
+                <p>No data available. (This would be a graph of the GPA progression)</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column" id="assignments">
+            <div class="block column assignment">
+                <div class="column">
+                    <h3 class="assignment-name">Finish Plucky Pilots API</h3>
+                    <h4 class="assignment-class">AP Computer Science</h4>
+                    <div style="flex: 1"></div>
+                    <h5 class="assignment-date">Due Tomorrow</h5>
+                </div>
+                <p class="desc">
+                    This is a description of the assignment as the user would see it
+                    on Google Classroom. The card can be expanded to show the full assignment.
+                </p>
+            </div>
+            <div class="block column assignment">
+                <div class="column">
+                    <h3 class="assignment-name">Finish Plucky Pilots API</h3>
+                    <h4 class="assignment-class">AP Computer Science</h4>
+                    <div style="flex: 1"></div>
+                    <h5 class="assignment-date">Due Tomorrow</h5>
+                </div>
+                <p class="desc">
+                    This is a description of the assignment as the user would see it
+                    on Google Classroom. The card can be expanded to show the full assignment.
+                </p>
+            </div>
+            <div class="block column assignment">
+                <div class="column">
+                    <h3 class="assignment-name">That english project long overdue</h3>
+                    <h4 class="assignment-class">Literature of California</h4>
+                    <div style="flex: 1"></div>
+                    <h5 class="assignment-date">Due 3000BC</h5>
+                </div>
+                <p class="desc">
+                    This is a description of the assignment as the user would see it
+                    on Google Classroom. The card can be expanded to show the full assignment.
+                </p>
+            </div>
+            <div class="block column assignment">
+                <div class="column">
+                    <h3 class="assignment-name">Dissapoint your parents</h3>
+                    <h4 class="assignment-class">Real Life</h4>
+                    <div style="flex: 1"></div>
+                    <h5 class="assignment-date">Due Today</h5>
+                </div>
+                <p class="desc">
+                    This is a description of the assignment as the user would see it
+                    on Google Classroom. The card can be expanded to show the full assignment.
+                </p>
+            </div>
+        </div>
+        <div class="column block" id="grades">
+            <% if(!data.grades) { %>
+                <p>No grades available.</p>
+            <% } else { %>
+                <% for(g in data.grades) { %>
+                    <div class="class row">
+                        <h4><b>Class</b><%= data.grades[g].name %></h4>
+                        <h4><b>Grade</b><%= data.grades[g].grade %></h4>
+                        <h4><b>Teacher</b><%= data.grades[g].teacher %></h4>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
 </div>
 
 <%- include('../partials/footer') %>

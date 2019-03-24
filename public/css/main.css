@@ -74,6 +74,10 @@ p {
     color: var(--para);
 }
 
+img {
+    vertical-align: middle;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -86,7 +90,8 @@ p {
 
 .block {
     display: flex;
-    padding: 20px;
+    padding: 10px;
+    margin: 5px;
     border-radius: 5px;
     background-color: var(--main-color);
     box-shadow: var(--shadow);
@@ -102,6 +107,7 @@ p {
     position: fixed;
     top: 0px;
     justify-content: center;
+    z-index: 1000;
 }
 
 .main {

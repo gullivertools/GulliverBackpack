@@ -17,7 +17,99 @@
     background-color: var(--inner-block);
 }
 
+.image {
+    display: block;
+    padding: 0;
+}
+
+.image > .block {
+    position: relative;
+    bottom: 0px;
+    width: -webkit-fill-available;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.image > img {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+#statistics {
+    flex: 1;
+}
+
+#statistics-chart {
+    flex: 1;
+}
+
+#statistics-GPA {
+    width: 140px;
+    align-items: center;
+    justify-content: center;
+}
+
+#statistics-GPA > p {
+    margin: 0px;
+}
+
+h2#GPA {
+    margin: 0px;
+    font-size: 5em;
+}
+
+h3#GPA {
+    margin: 0px;
+    font-size: 4em;
+}
+
 h4 {
     flex: 1;
     margin-left: 10px;
+}
+
+#statistics-chart {
+    align-items: center;
+    justify-content: center;
+}
+
+#assignments {
+    flex: 1;
+}
+
+#grades {
+    flex: 2;
+    height: fit-content;
+}
+
+.assignment {
+    cursor: pointer
+}
+
+.desc {
+    margin: 10px;
+}
+
+.assignment-class {
+    margin: 0px 10px;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    font-size: 0.7em;
+    margin-bottom: 10px;
+}
+
+/* that the username */
+h3 {
+    margin: 5px 0px 0px 10px;
+}
+
+h5 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+
+    margin: 5px 10px;
 }
