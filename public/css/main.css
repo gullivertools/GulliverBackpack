@@ -111,6 +111,22 @@ button.transparent:hover {
     color: var(--selected-text);
 }
 
+select {
+    all: unset;
+    text-align-last: center;
+    position: relative;
+    display: block;
+    padding: 5px 5px;
+    background-color: var(--inner-block);
+    border-radius: 4px;
+    cursor: pointer;
+    
+    font-size: 16px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    color: #333;
+}
+
 .row {
     display: flex;
     flex-direction: row;

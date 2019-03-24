@@ -65,4 +65,8 @@ app.post('/login', function (req, res) {
     }
 });
 
+app.post('/fetchGrades', function(req, res) {
+    console.log('grades from: ', req.body);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

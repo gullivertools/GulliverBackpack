@@ -76,6 +76,15 @@
             <div class="block row">
                 <button class="transparent" onClick="openClasses()">Open All</button>
                 <button class="transparent" onClick="closeClasses()">Close All</button>
+                <div style="flex: 1"></div>
+                <select id="selector" onchange="fetchGrades()">
+                    <option value="all" class="option">All Grades</option>
+                    <option value="week">This Week</option>
+                    <option value="q1">Quarter 1</option>
+                    <option value="q2">Quarter 2</option>
+                    <option value="q3">Quarter 3</option>
+                    <option value="q4">Quarter 4</option>
+                </select>
             </div>
             <div class="column block">
                 <% if(!data.grades) { %>
