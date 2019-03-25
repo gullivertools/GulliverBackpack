@@ -112,27 +112,64 @@ async function getGrades(userCookie) {
             "gradeNumber": number,
             "teacher": classTeacher
         });
+
     });
 
     return classes;
 }
 
-async function getFullGrades(userCookie) {
+async function getFullGrades(userCookie, quarter) {
     let username = userCookie.username;
     let password = userCookie.password;
     const gradesList = [];
 
     const jar = requests.jar();
     const request = requests.defaults({
-        jar: jar
+        jar: jar,
+        strictSSL: false
     });
 
     await loginToMBP(username, password, request);
 
-    // await fetchGrades(username, password, request);
-    console.log(request.jar().getCookies('https://mybackpack.gulliverschools.org'));
+    await fetchGrades(username, password, request);
+    // console.log(request.jar().getCookies('https://mybackpack.gulliverschools.org'));
 
-    let grades = await fetchFullGrades(request);
+    // let grades = await fetchFullGrades(request);
+    const fetchGradesData = {
+        f: 'f',
+        'javax.faces.ViewState': 'j_id3',
+        'f:inside:UpcomingTab:AssignMPSel': '~~all~~',
+        'f:inside:UpcomingTab:j_id_jsp_394614891_10pc6': '',
+        'f:inside:UpcomingTab:j_id_jsp_394614891_12pc6': '',
+        'f:_idcl': 'f:inside j_id_jsp_1774471256_10pc5'
+    }
+    const fetchGradesHeaders = {
+        'Authorization': '',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Cache-Control': 'max-age=0',
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Upgrade-Insecure-Requests': '1',
+        'Host': 'mybackpack.gulliverschools.org',
+        'Origin': 'https://mybackpack.gulliverschools.org',
+        'Referer': 'https://mybackpack.gulliverschools.org/SeniorApps/studentParent/academic/dailyAssignments/gradeBookGrades.faces',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
+    }
+
+    request.post("https://mybackpack.gulliverschools.org/SeniorApps/studentParent/academic/dailyAssignments/gradeBookGrades.faces?selectedMenuId=true", {
+        headers: fetchGradesHeaders,
+        form: fetchGradesData,
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false
+    }, function (err, response, body) {
+        console.log(response.statusCode)
+        console.log(body)
+
+    });
+
     // const $ = cheerio.load(grades);
     // let richPanel = $('.rich-panel ').toArray();
 
@@ -165,6 +202,7 @@ async function getFullGrades(userCookie) {
 }
 
 function fetchFullGrades(request) {
+
     const fetchGradesData = {
         'f': 'f',
         'javax.faces.ViewState': 'j_id3',
@@ -187,26 +225,16 @@ function fetchFullGrades(request) {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
     }
     return new Promise(resolve => {
-        request.get("https://mybackpack.gulliverschools.org/SeniorApps/studentParent/academic/dailyAssignments/gradeBookGrades.faces", {
-            headers: {
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-                'Accept-Language': 'en-US,en;q=0.9',
-                'Connection': 'keep-alive',
-                'Host': 'mybackpack.gulliverschools.org',
-                'Referer': 'https://mybackpack.gulliverschools.org/',
-                'Upgrade-Insecure-Requests': '1',
-                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
-            }
-        }, function (err1, response1, body1) {
-            request.post("https://mybackpack.gulliverschools.org/SeniorApps/studentParent/academic/dailyAssignments/gradeBookGrades.faces", {
-                headers: fetchGradesHeaders,
-                formData: fetchGradesData
-            }, function (err, response, body) {
-                console.log(response.statusCode)
-                console.log(body)
-                resolve(body)
-            });
+        request.post("https://mybackpack.gulliverschools.org/SeniorApps/studentParent/academic/dailyAssignments/gradeBookGrades.faces", {
+            headers: fetchGradesHeaders,
+            formData: fetchGradesData,
+            rejectUnauthorized: false
+        }, function (err, response, body) {
+            console.log(response.statusCode)
+            console.log(body)
+            resolve(body)
         });
+
     });
 }
 

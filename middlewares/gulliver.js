@@ -1,7 +1,5 @@
 var requests = require('request')
-var request = requests.defaults({
-    jar: true
-})
+
 const cheerio = require('cheerio')
 const getHeaders = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -15,17 +13,19 @@ const getHeaders = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
 }
 
-function getLoginPage() {
-
+function getLoginPage(username, password) {
+    var request = requests.defaults({
+        jar: true
+    })
 
     request.get("https://www.gulliverschools.org/login", {
         headers: getHeaders
     }, function (err, res, body) {
-        getCSRF();
+        getCSRF(username, password, request);
     })
 }
 
-function getCSRF() {
+function getCSRF(username, password, request) {
     const csrfHeaders = {
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -42,11 +42,11 @@ function getCSRF() {
     }, function (err, res, body) {
         const $ = cheerio.load(body);
         const token = $('input').val();
-        login(token)
+        login(token, username, password, request)
     })
 }
 
-function login(token) {
+function login(token, username, password, request) {
     const postHeaders = {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -63,8 +63,8 @@ function login(token) {
 
     const postData = {
         'utf8': '✓',
-        'username': 'kraj011',
-        'password': 'Davidk123456',
+        'username': username,
+        'password': password,
         'protected_page': 'false',
         'authenticity_token': token
     }
@@ -75,11 +75,11 @@ function login(token) {
     }, function (err, res, body) {
         if (res.headers['location'] != 'https://www.gulliverschools.org/student-portal')
             return
-        fetchCalendar()
+        fetchCalendar(request);
     })
 }
 
-function fetchCalendar() {
+function fetchCalendar(request) {
     request.get("https://www.gulliverschools.org/groups.cfm", {
         headers: getHeaders
     }, function (err, res, body) {
@@ -99,13 +99,13 @@ function parseCalendar(calendarString) {
         const weekDay = $(event).find('.event_stackdayname').text()
         if (eventName != '') {
             assignments.push({
-                "name": eventName.replace("DUE: ", "").replace(/\(p \d\)/, ""),
+                "name": eventName.replace("DUE: ", "").replace(/\(p \d\)/, "").replace("due", ""),
                 "due": weekDay + ", " + month + " " + day
             })
         }
     })
-    console.log(assignments)
-
+    return assignments;
 }
 
-getLoginPage();
+
+getLoginPage("kraj011", "Davidk123456");
