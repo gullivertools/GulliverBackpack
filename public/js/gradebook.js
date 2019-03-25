@@ -39,3 +39,9 @@ function closeClasses() {
     $('.class').removeClass('opened');
     $('.class').css({'height': 40});
 }
+
+function fetchGrades() {
+    let gradingPeriod = document.getElementById("selector").value + "";
+
+    $.post('/fetchGrades', {'grades': gradingPeriod});
+}
