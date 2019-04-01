@@ -1,8 +1,5 @@
 const { google } = require('googleapis');
-
-const CLIENT_ID = '492333572978-bc8ec5tuo2ohomn0fts3rsh2f634hm57.apps.googleusercontent.com',
-      CLIENT_SECRET = 'x7hOvT1oz8gm3rCrkCGGAOaY',
-      REDIRECT_URL = 'http://localhost:3000/classroomCallback';
+const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URL } = require('../secret');
 
 const oauth2Client = new google.auth.OAuth2(
   CLIENT_ID,

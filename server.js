@@ -21,16 +21,6 @@ app.use(session({
     secret: "secret"
 }));
 
-const postHeaders = {
-    'Accept': '*/*',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Connection': 'keep-alive',
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'Host': 'mybackpack.gulliverschools.org',
-    'Origin': 'https://mybackpack.gulliverschools.org',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
-}
-
 const {
     getGrades,
     getFullGrades
@@ -54,7 +44,9 @@ app.get('/home', async function (req, res) {
     res.status(200).render('pages/home', {
         data: {
             grades: grades,
-            imports: `<script src="/js/gradebook.js"></script>`
+            imports: `
+            <script src="/js/gradebook.js"></script>
+            <script src="/js/classroom.js"></script>`
         }
     });
 
@@ -120,6 +112,6 @@ app.post('/fetchGrades', function (req, res) {
     getFullGrades(req.cookies['user-info'], req.body["grades"])
 });
 
-
+app.post('/')
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
