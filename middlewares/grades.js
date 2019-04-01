@@ -122,12 +122,8 @@ async function getGrades(userCookie) {
         let letter = "N/A"
         let number = ""
         if (classGrade != " ") {
-            console.log('classgrade:' + classGrade);
-            // letter = (classGrade.match(/[\w]|[\w\+]|[\w-]/) || ["N/A"])[0]
             letter = classGrade.substr(0, 2);
-            number = classGrade.replace(/[A-z -]/g, "")
-
-            console.log({letter, number});
+            number = classGrade.replace(/[A-z -]/g, "");
         }
         classes.push({
             name: className,

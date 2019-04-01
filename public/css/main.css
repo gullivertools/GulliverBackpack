@@ -9,7 +9,7 @@
 :root {
     --bg-tint: #f2f5f8;
     --main-color: #fff;
-    --inner-block: #f9f8f8;
+    --inner-block: #ecf1f5;
     --shadow: 0 0 20px 3px rgba(0, 0, 0, 0.02);
     --shadow-selected: 0 0 20px 3px rgba(0, 0, 0, 0.08);
     --title: #000;
@@ -99,7 +99,7 @@ button.transparent {
     cursor: pointer;
     background-color: transparent;
 
-    box-shadow: transparent;
+    box-shadow: none;
 }
 
 button:hover {
@@ -153,6 +153,20 @@ select {
     top: 0px;
     justify-content: center;
     z-index: 1000;
+}
+
+.top-bar > a {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10px;
+}
+
+.top-bar h3 {
+    color: var(--para);
+    cursor: pointer;
+    user-select: none;
 }
 
 .main {

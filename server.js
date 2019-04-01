@@ -49,6 +49,7 @@ app.get('/', function (req, res) {
 app.get('/home', async function (req, res) {
     // get grades
     let grades = await getGrades(req.cookies['user-info']);
+    // try and keep this in a cookie that lasts like a day
 
     res.status(200).render('pages/home', {
         data: {
@@ -58,6 +59,16 @@ app.get('/home', async function (req, res) {
     });
 
 });
+
+app.get('/calendar', function(req, res) {
+    let events = {};
+
+    res.status(200).render('pages/calendar', {
+        data: {
+            events: events
+        }
+    })
+})
 
 app.get('/test', async function (req, res) {
     let grades = await getFullGrades(req.cookies['user-info'], 'q4');
