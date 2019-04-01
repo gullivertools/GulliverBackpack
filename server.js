@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000; // this is just for heroku support
 var requests = require('request');
 const cheerio = require('cheerio');
 const { policy } = require('./secret.js');
-const { url } = require('./middlewares/classroom')
+const { url, getAccessToken } = require('./middlewares/classroom')
 
 const app = express();
 
@@ -79,6 +79,15 @@ app.get('/policy', function(req, res) {
 app.get('/classroomData', function(req, res) {
     res.redirect(url);
 });
+
+app.get('/classroomCallback', function(req, res) {
+    let code = req.query.code; // this is the code
+    console.log(code);
+
+    getAccessToken(code);
+
+    res.redirect('/home');
+})
 
 app.post('/login', function (req, res) {
     let json = req.body;
