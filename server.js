@@ -5,6 +5,8 @@ const session = require('express-session');
 const port = process.env.PORT || 3000; // this is just for heroku support
 var requests = require('request');
 const cheerio = require('cheerio');
+const { policy } = require('./secret.js');
+const { url } = require('./middlewares/classroom')
 
 const app = express();
 
@@ -68,6 +70,14 @@ app.get('/login', function (req, res) {
             imports: `<link rel="stylesheet" type="text/css" media="screen" href="/css/login.css">`
         }
     });
+});
+
+app.get('/policy', function(req, res) {
+    res.send(policy);
+});
+
+app.get('/classroomData', function(req, res) {
+    res.redirect(url);
 });
 
 app.post('/login', function (req, res) {
