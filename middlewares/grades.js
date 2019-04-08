@@ -123,7 +123,7 @@ async function getGrades(userCookie) {
         let number = ""
         if (classGrade != " ") {
             letter = classGrade.substr(0, 2);
-            number = classGrade.replace(/[A-z -]/g, "");
+            number = classGrade.replace(/[A-z -]/g, ""); // this doesn't quite work yet
         }
         classes.push({
             name: className,

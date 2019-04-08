@@ -21,6 +21,7 @@
     "gatsby-plugin-sharp": "^2.0.29",
     "gatsby-source-filesystem": "^2.0.27",
     "gatsby-transformer-sharp": "^2.1.17",
+    "google-classroom": "^2.1.0",
     "googleapis": "^39.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",

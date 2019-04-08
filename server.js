@@ -5,8 +5,9 @@ const session = require('express-session');
 const port = process.env.PORT || 3000; // this is just for heroku support
 var requests = require('request');
 const cheerio = require('cheerio');
-const { policy } = require('./secret.js');
-const { url, getAccessToken } = require('./middlewares/classroom')
+const { policy, CLIENT_ID, CLIENT_SECRET } = require('./secret.js');
+const { url, getAccessToken, listCourses } = require('./middlewares/classroom');
+const { getLoginPage } = require('./middlewares/gulliver');
 
 const app = express();
 
@@ -33,7 +34,7 @@ app.get('/', function (req, res) {
     if (!req.cookies["user-info"]) // if user is not logged in
         return res.redirect('/login')
 
-    res.redirect('/home');
+    res.redirect('/calendar');
 });
 
 app.get('/home', async function (req, res) {
@@ -52,12 +53,17 @@ app.get('/home', async function (req, res) {
 
 });
 
-app.get('/calendar', function(req, res) {
+app.get('/calendar', function (req, res) {
     let events = {};
+
+    getLoginPage("kraj011", "Davidk123456");
 
     res.status(200).render('pages/calendar', {
         data: {
-            events: events
+            events: events,
+            imports: `
+            <script src="/js/calendar.js"></script>
+            <link rel="stylesheet" type="text/css" media="screen" href="/css/calendar.css">`
         }
     })
 })
@@ -75,22 +81,26 @@ app.get('/login', function (req, res) {
     });
 });
 
-app.get('/policy', function(req, res) {
+app.get('/policy', function (req, res) {
     res.send(policy);
 });
 
-app.get('/classroomData', function(req, res) {
+app.get('/classroomData', function (req, res) {
     res.redirect(url);
 });
 
-app.get('/classroomCallback', function(req, res) {
+app.get('/classroomCallback', async function (req, res, next) {
     let code = req.query.code; // this is the code
     console.log(code);
 
-    getAccessToken(code);
+    let token = await getAccessToken(code);
 
+    listCourses();
+
+    next();
+}, function (req, res) {
     res.redirect('/home');
-})
+});
 
 app.post('/login', function (req, res) {
     let json = req.body;
@@ -112,6 +122,9 @@ app.post('/fetchGrades', function (req, res) {
     getFullGrades(req.cookies['user-info'], req.body["grades"])
 });
 
-app.post('/')
+app.post('/getClassroomAssignments', function (req, res) {
+
+    res.send(null);
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

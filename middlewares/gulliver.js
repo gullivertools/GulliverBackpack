@@ -103,9 +103,17 @@ function parseCalendar(calendarString) {
                 "due": weekDay + ", " + month + " " + day
             })
         }
-    })
+    });
+
+    console.log(assignments);
+
     return assignments;
 }
 
+function parseCalendar(htmlData) {
+    
+}
 
-getLoginPage("kraj011", "Davidk123456");
+module.exports = {
+    getLoginPage
+}
